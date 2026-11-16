@@ -810,13 +810,18 @@ function toggleTheme(){
   const root = document.documentElement;
   const next = root.dataset.theme === 'light' ? 'dark' : 'light';
   const apply = ()=>{ root.dataset.theme = next; try{ localStorage.setItem('theme', next); }catch(e){} };
-  document.startViewTransition ? document.startViewTransition(apply) : apply();
+  try{ document.startViewTransition ? document.startViewTransition(apply) : apply(); }
+  catch(e){ apply(); }
 }
-addEventListener('keydown', e=>{
-  if(e.key !== '1' || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
-  if(e.target.closest('input,textarea,[contenteditable]')) return;
+// 한글 입력 상태나 숫자패드에서도 동작하도록 물리 키(code)로 확인
+document.addEventListener('keydown', e=>{
+  const isOne = e.code === 'Digit1' || e.code === 'Numpad1' || e.key === '1';
+  if(!isOne || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target;
+  if(t && t.closest && t.closest('input,textarea,select,[contenteditable]')) return;
+  e.preventDefault();
   toggleTheme();
-});
+}, true);
 </script>
 </body>
 </html>
