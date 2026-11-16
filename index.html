@@ -288,6 +288,117 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
   }
+
+  /* =========================================================
+     THEME — Dark Glass Glow (레퍼런스: 검은 배경 + 유리 패널 + 아래로 번지는 블루 라이트)
+     이 블록을 통째로 지우면 이전 밝은 테마로 돌아갑니다.
+     ========================================================= */
+  :root{
+    --glow-white:#eef2ff;
+    --glow-sky:#9db8ff;
+    --glow-blue:#2f5cf2;
+    --glow-deep:#0a1a5a;
+    --text:#c9d5f5;
+    --muted:#6f7fa8;
+    --line:rgba(255,255,255,.16);
+    --line-soft:rgba(255,255,255,.08);
+    --glass-edge:rgba(255,255,255,.38);
+  }
+  body{background:#000;color:var(--text)}
+  ::selection{background:var(--glow-blue);color:#fff}
+  .mark{color:rgba(215,226,255,.7)}
+  .cursor{color:#fff;mix-blend-mode:difference}
+  .cursor.is-play{mix-blend-mode:normal}
+  .cursor.is-play .reg-fill{fill:rgba(47,92,242,.9)}
+
+  /* nav */
+  nav a{color:#7f93c9}
+  nav a:hover,nav a.active{color:#fff}
+  nav .logo{color:var(--glow-sky)}
+  nav.scrolled{background:rgba(0,0,0,.55);border-bottom:1px solid var(--line-soft)}
+
+  /* hero: 유리 패널 + 빛 번짐 */
+  .hero{background:#000;--hx:50%;--hy:60%}
+  .hero::before{content:"";position:absolute;z-index:0;
+    left:calc(var(--gx1) + 18px);right:calc(100vw - var(--gx2) + 18px);top:21.6%;height:45.9%;
+    border-radius:18px;border:1px solid var(--glass-edge);border-bottom-color:transparent;
+    background:
+      radial-gradient(70% 60% at var(--hx) 120%,rgba(47,92,242,.55),transparent 70%),
+      linear-gradient(180deg,rgba(28,36,70,.55) 0%,rgba(8,14,40,.65) 55%,rgba(20,50,170,.35) 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 60px rgba(120,150,255,.06);
+    -webkit-mask:linear-gradient(180deg,#000 70%,transparent);mask:linear-gradient(180deg,#000 70%,transparent);
+    opacity:0;animation:fadeIn 1.6s var(--ease) .2s forwards}
+  .hero::after{content:"";position:absolute;z-index:0;left:0;right:0;top:52%;bottom:-10%;pointer-events:none;
+    background:
+      radial-gradient(42% 55% at 50% 62%,rgba(238,242,255,.95) 0%,rgba(190,208,255,.75) 22%,rgba(80,120,250,.55) 48%,rgba(20,50,190,.25) 68%,transparent 82%),
+      radial-gradient(70% 70% at 50% 100%,rgba(47,92,242,.6),transparent 70%);
+    filter:blur(18px);opacity:0;animation:fadeIn 2.2s var(--ease) .6s forwards,breathe 7s ease-in-out 2.8s infinite alternate}
+  @keyframes fadeIn{to{opacity:1}}
+  @keyframes breathe{from{opacity:1;transform:scaleX(1)}to{opacity:.82;transform:scaleX(1.06)}}
+  .hero .hline,.hero #heroMarks,.title-wrap,.subtitle,.scroll-hint{z-index:1}
+  .hero .hline{opacity:.6}
+  .title{filter:drop-shadow(0 0 28px rgba(80,120,255,.45))}
+  .title .ch span{
+    background-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),
+      #ffffff 0%,#dfe8ff 18%,#9db8ff 42%,#4a74f5 72%,#1d3aa8 100%);
+    -webkit-text-stroke:1px rgba(255,255,255,.35)}
+  .subtitle p{color:#0b1c5e;text-shadow:0 0 18px rgba(255,255,255,.6)}
+  .scroll-hint{color:#1e3a9e}
+  .scroll-hint i{background:linear-gradient(#1e3a9e,transparent)}
+  .scroll-hint i::after{background:#fff}
+
+  /* intro */
+  .intro h2{color:#e6ecff}
+  .intro h2 em{color:var(--glow-sky);text-shadow:0 0 24px rgba(90,130,255,.7)}
+  .intro p{color:#8492b8}
+  .cat-index{border-top-color:var(--line)}
+  .cat-index .k{color:#dbe4ff}
+  .cat-index a:hover .k{color:var(--glow-sky);text-shadow:0 0 20px rgba(90,130,255,.7)}
+
+  /* category heads: 아래에서 올라오는 빛 */
+  .cat-head{background:linear-gradient(180deg,#000 0%,#030716 45%,#0a1a5a 85%,#1d44c9 100%);overflow:hidden}
+  .cat-head::after{content:"";position:absolute;left:20%;right:20%;bottom:-40%;height:80%;
+    background:radial-gradient(50% 50% at 50% 50%,rgba(238,242,255,.55),rgba(80,120,250,.25) 50%,transparent 75%);
+    filter:blur(20px);pointer-events:none}
+  .cat-head .inner{z-index:1}
+  .cat-head h2{-webkit-text-stroke:1px rgba(170,195,255,.7)}
+  .cat-head h2 .fill{color:transparent;background:linear-gradient(180deg,#fff 0%,#b9cbff 50%,#4a74f5 100%);
+    -webkit-background-clip:text;background-clip:text}
+  .cat-head .desc{color:#8fa3d8}
+
+  /* cards: 유리 카드 */
+  .card .media{background:#05070f;border-radius:12px;border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35);transition:box-shadow .6s var(--ease),border-color .6s}
+  .card:hover .media{border-color:rgba(255,255,255,.3);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 40px 90px -30px rgba(47,92,242,.75)}
+  .ph{background:linear-gradient(180deg,#05070f 0%,#070d2a 55%,#10257a 100%)}
+  .ph b{filter:blur(46px)}
+  .ph b:nth-child(1){left:10%;top:auto;bottom:-45%;width:80%;background:var(--glow-blue);opacity:.8}
+  .ph b:nth-child(2){right:20%;bottom:-35%;width:60%;background:var(--glow-sky);opacity:.6}
+  .ph b:nth-child(3){left:35%;top:auto;bottom:-20%;width:30%;background:var(--glow-white);opacity:.55}
+  .ph .ph-label{color:rgba(220,230,255,.75)}
+  .crop::before,.crop::after{background:rgba(255,255,255,.55)}
+  .card .meta .t{color:#e6ecff}
+  .card .meta .t span{background-image:linear-gradient(var(--glow-sky),var(--glow-sky))}
+  .card .tag{color:#dbe4ff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);border-radius:999px}
+
+  /* contact: 레퍼런스처럼 바닥에서 번지는 흰·파란 빛 */
+  .contact{background:
+    radial-gradient(75% 55% at 50% 108%,#eef2ff 0%,#b9cbff 20%,#4a74f5 42%,#0f2580 62%,transparent 82%),#000}
+  .contact h2{background:linear-gradient(90deg,#4a74f5,#ffffff,#9db8ff,#4a74f5);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 30px rgba(80,120,255,.5))}
+  .contact .links{color:#c9d5f5}
+  .contact footer{color:#0b1c5e}
+
+  /* modal */
+  .modal .veil{background:radial-gradient(80% 45% at 50% 115%,#2f5cf2,#0a1a5a 45%,#000 75%),#000}
+  .modal .close{color:#dbe4ff}
+  .modal .player{background:#05070f;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+  .modal .info h3{color:#f0f4ff}
+  .modal .info .desc{color:#8e9cc4}
+  .modal dd{color:#c9d5f5}
+  .modal .pager{color:#c9d5f5}
+  .modal .pager button:hover b{color:var(--glow-sky)}
 </style>
 </head>
 <body>
@@ -296,15 +407,15 @@
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <symbol id="reg" viewBox="0 0 30 30">
-      <line x1="15" y1="1" x2="15" y2="29" stroke="#111" stroke-width=".9"/>
-      <line x1="1" y1="15" x2="29" y2="15" stroke="#111" stroke-width=".9"/>
-      <circle cx="15" cy="15" r="8.2" fill="none" stroke="#111" stroke-width=".9"/>
-      <path d="M15 9.2 A5.8 5.8 0 0 1 20.8 15 L15 15Z" fill="#111"/>
-      <path d="M15 20.8 A5.8 5.8 0 0 1 9.2 15 L15 15Z" fill="#111"/>
-      <circle cx="15" cy="15" r="5.8" fill="none" stroke="#111" stroke-width=".9"/>
+      <line x1="15" y1="1" x2="15" y2="29" stroke="currentColor" stroke-width=".9"/>
+      <line x1="1" y1="15" x2="29" y2="15" stroke="currentColor" stroke-width=".9"/>
+      <circle cx="15" cy="15" r="8.2" fill="none" stroke="currentColor" stroke-width=".9"/>
+      <path d="M15 9.2 A5.8 5.8 0 0 1 20.8 15 L15 15Z" fill="currentColor"/>
+      <path d="M15 20.8 A5.8 5.8 0 0 1 9.2 15 L15 15Z" fill="currentColor"/>
+      <circle cx="15" cy="15" r="5.8" fill="none" stroke="currentColor" stroke-width=".9"/>
     </symbol>
     <symbol id="star" viewBox="0 0 30 30">
-      <g stroke="#444" stroke-width=".9" stroke-linecap="round">
+      <g stroke="currentColor" stroke-width=".9" stroke-linecap="round">
         <line x1="15" y1="2" x2="15" y2="28"/><line x1="2" y1="15" x2="28" y2="15"/>
         <line x1="5.8" y1="5.8" x2="24.2" y2="24.2"/><line x1="24.2" y1="5.8" x2="5.8" y2="24.2"/>
         <line x1="10" y1="3" x2="20" y2="27"/><line x1="20" y1="3" x2="10" y2="27"/>
@@ -473,6 +584,7 @@ addEventListener('resize', layoutGradient);
 
 /* ---------- cursor + hero interaction ---------- */
 const cursor = $('#cursor');
+const hero = $('.hero');
 let mx=innerWidth/2, my=innerHeight/2, cx=mx, cy=my;
 let gx=50, gy=50, tgx=50, tgy=50;
 addEventListener('pointermove', e=>{
@@ -488,6 +600,7 @@ const heroMarks = [...document.querySelectorAll('#heroMarks .mark')];
   gx += (tgx-gx)*.08; gy += (tgy-gy)*.08;
   title.style.setProperty('--mx', gx+'%');
   title.style.setProperty('--my', gy+'%');
+  hero.style.setProperty('--hx', (mx/innerWidth*100)+'%');
   // marks drift slightly toward cursor
   if (scrollY < innerHeight){
     const dx = (mx/innerWidth-.5), dy = (my/innerHeight-.5);
@@ -519,7 +632,7 @@ document.addEventListener('pointerover', e=>{
 });
 
 /* ---------- hero scroll parallax ---------- */
-const hero = $('.hero'), nav = $('#nav');
+const nav = $('#nav');
 addEventListener('scroll', ()=>{
   const p = Math.min(scrollY/innerHeight,1);
   title.style.transform = `translateY(${p*-12}vh) scale(${1-p*.12})`;
