@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Interactive Designer</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -290,115 +291,169 @@
   }
 
   /* =========================================================
-     THEME — Dark Glass Glow (레퍼런스: 검은 배경 + 유리 패널 + 아래로 번지는 블루 라이트)
-     이 블록을 통째로 지우면 이전 밝은 테마로 돌아갑니다.
+     THEME — Glass Glow (Dark / Light)
+     키보드 1번으로 전환. 디자인은 같고 색만 아래 변수로 바뀝니다.
      ========================================================= */
-  :root{
-    --glow-white:#eef2ff;
-    --glow-sky:#9db8ff;
-    --glow-blue:#2f5cf2;
-    --glow-deep:#0a1a5a;
-    --text:#c9d5f5;
-    --muted:#6f7fa8;
-    --line:rgba(255,255,255,.16);
-    --line-soft:rgba(255,255,255,.08);
-    --glass-edge:rgba(255,255,255,.38);
+  :root,[data-theme="dark"]{
+    --bg:#000;
+    --text:#c9d5f5; --muted:#6f7fa8;
+    --line:rgba(255,255,255,.16); --line-soft:rgba(255,255,255,.08);
+    --mark:rgba(215,226,255,.7);
+    --accent:#9db8ff; --accent-glow:rgba(90,130,255,.7);
+    --nav-link:#7f93c9; --nav-hover:#fff; --nav-bg:rgba(0,0,0,.55);
+    --heading:#e6ecff; --body:#8492b8; --strong:#f0f4ff;
+    /* hero glass panel + light beam */
+    --glass-edge:rgba(255,255,255,.38); --glass-hi:rgba(255,255,255,.55);
+    --glass-top:rgba(28,36,70,.55); --glass-mid:rgba(8,14,40,.65); --glass-bot:rgba(20,50,170,.35);
+    --glass-spot:rgba(47,92,242,.55);
+    --beam-0:rgba(238,242,255,.95); --beam-1:rgba(190,208,255,.75); --beam-2:rgba(80,120,250,.55); --beam-3:rgba(20,50,190,.25);
+    --beam-floor:rgba(47,92,242,.6);
+    /* title */
+    --t0:#ffffff; --t1:#dfe8ff; --t2:#9db8ff; --t3:#4a74f5; --t4:#1d3aa8;
+    --t-stroke:rgba(255,255,255,.35); --t-glow:rgba(80,120,255,.45);
+    --subtitle:#0b1c5e; --subtitle-glow:rgba(255,255,255,.6); --hint:#1e3a9e; --hint-drip:#fff;
+    /* category head */
+    --head-0:#000; --head-1:#030716; --head-2:#0a1a5a; --head-3:#1d44c9;
+    --head-beam:rgba(238,242,255,.55); --head-beam-2:rgba(80,120,250,.25);
+    --cat-stroke:rgba(170,195,255,.7); --cat-f0:#fff; --cat-f1:#b9cbff; --cat-f2:#4a74f5; --cat-desc:#8fa3d8;
+    /* cards */
+    --media-bg:#05070f; --media-border:rgba(255,255,255,.14); --media-border-h:rgba(255,255,255,.3);
+    --media-hi:rgba(255,255,255,.35); --media-hi-h:rgba(255,255,255,.6); --media-shadow:rgba(47,92,242,.75);
+    --ph-0:#05070f; --ph-1:#070d2a; --ph-2:#10257a;
+    --blob-1:#2f5cf2; --blob-2:#9db8ff; --blob-3:#eef2ff; --ph-label:rgba(220,230,255,.75);
+    --crop:rgba(255,255,255,.55); --tag:#dbe4ff; --tag-bg:rgba(0,0,0,.45); --tag-border:rgba(255,255,255,.12);
+    /* contact */
+    --floor-0:#eef2ff; --floor-1:#b9cbff; --floor-2:#4a74f5; --floor-3:#0f2580;
+    --c-h0:#4a74f5; --c-h1:#ffffff; --c-h2:#9db8ff; --footer:#0b1c5e;
+    /* modal */
+    --veil-0:#2f5cf2; --veil-1:#0a1a5a;
   }
-  body{background:#000;color:var(--text)}
-  ::selection{background:var(--glow-blue);color:#fff}
-  .mark{color:rgba(215,226,255,.7)}
+  [data-theme="light"]{
+    --bg:#fff;
+    --text:#2b3b63; --muted:#8a9cc4;
+    --line:rgba(0,0,0,.85); --line-soft:rgba(40,60,110,.18);
+    --mark:#111;
+    --accent:#7da5fb; --accent-glow:rgba(125,165,251,.45);
+    --nav-link:#6f8fd8; --nav-hover:#2f5bd6; --nav-bg:rgba(255,255,255,.7);
+    --heading:#2f4e9c; --body:#5d6f99; --strong:#1f3470;
+    --glass-edge:rgba(90,130,230,.45); --glass-hi:rgba(255,255,255,1);
+    --glass-top:rgba(255,255,255,.75); --glass-mid:rgba(244,248,255,.7); --glass-bot:rgba(188,209,253,.55);
+    --glass-spot:rgba(125,165,251,.45);
+    --beam-0:rgba(255,255,255,.95); --beam-1:rgba(214,227,255,.9); --beam-2:rgba(160,190,253,.7); --beam-3:rgba(125,165,251,.35);
+    --beam-floor:rgba(125,165,251,.55);
+    --t0:#3f6ff0; --t1:#5f8cf8; --t2:#86a9fc; --t3:#a9c4fe; --t4:#bcd1fd;
+    --t-stroke:rgba(125,165,251,.55); --t-glow:rgba(125,165,251,.35);
+    --subtitle:#7da5fb; --subtitle-glow:rgba(255,255,255,.9); --hint:#5d7fd6; --hint-drip:#2f5bd6;
+    --head-0:#fff; --head-1:#f8faff; --head-2:#e6eeff; --head-3:#bcd1fd;
+    --head-beam:rgba(255,255,255,.9); --head-beam-2:rgba(160,190,253,.35);
+    --cat-stroke:#7da5fb; --cat-f0:#c9dafe; --cat-f1:#a9c4fe; --cat-f2:#7da5fb; --cat-desc:#6f86ba;
+    --media-bg:#eef3ff; --media-border:rgba(90,130,230,.25); --media-border-h:rgba(90,130,230,.5);
+    --media-hi:rgba(255,255,255,.9); --media-hi-h:rgba(255,255,255,1); --media-shadow:rgba(125,165,251,.6);
+    --ph-0:#ffffff; --ph-1:#f2f6ff; --ph-2:#dbe6ff;
+    --blob-1:#7da5fb; --blob-2:#a9c4fe; --blob-3:#ffffff; --ph-label:#5d7fd6;
+    --crop:var(--ink); --tag:#2f4e9c; --tag-bg:rgba(255,255,255,.75); --tag-border:rgba(90,130,230,.2);
+    --floor-0:#ffffff; --floor-1:#dbe6ff; --floor-2:#a9c4fe; --floor-3:#d9e5ff;
+    --c-h0:#7da5fb; --c-h1:#c9dafe; --c-h2:#a9c4fe; --footer:#5d7fd6;
+    --veil-0:#bcd1fd; --veil-1:#f2f6ff;
+  }
+  body{background:var(--bg);color:var(--text)}
+  ::selection{background:var(--accent);color:#fff}
+  .mark{color:var(--mark)}
   .cursor{color:#fff;mix-blend-mode:difference}
   .cursor.is-play{mix-blend-mode:normal}
   .cursor.is-play .reg-fill{fill:rgba(47,92,242,.9)}
 
   /* nav */
-  nav a{color:#7f93c9}
-  nav a:hover,nav a.active{color:#fff}
-  nav .logo{color:var(--glow-sky)}
-  nav.scrolled{background:rgba(0,0,0,.55);border-bottom:1px solid var(--line-soft)}
+  nav a{color:var(--nav-link)}
+  nav a:hover,nav a.active{color:var(--nav-hover)}
+  nav .logo{color:var(--accent)}
+  nav.scrolled{background:var(--nav-bg);border-bottom:1px solid var(--line-soft)}
 
   /* hero: 유리 패널 + 빛 번짐 */
-  .hero{background:#000;--hx:50%;--hy:60%}
+  .hero{background:var(--bg);--hx:50%}
   .hero::before{content:"";position:absolute;z-index:0;
     left:calc(var(--gx1) + 18px);right:calc(100vw - var(--gx2) + 18px);top:21.6%;height:45.9%;
     border-radius:18px;border:1px solid var(--glass-edge);border-bottom-color:transparent;
     background:
-      radial-gradient(70% 60% at var(--hx) 120%,rgba(47,92,242,.55),transparent 70%),
-      linear-gradient(180deg,rgba(28,36,70,.55) 0%,rgba(8,14,40,.65) 55%,rgba(20,50,170,.35) 100%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 60px rgba(120,150,255,.06);
+      radial-gradient(70% 60% at var(--hx) 120%,var(--glass-spot),transparent 70%),
+      linear-gradient(180deg,var(--glass-top) 0%,var(--glass-mid) 55%,var(--glass-bot) 100%);
+    box-shadow:inset 0 1px 0 var(--glass-hi),inset 0 0 60px rgba(120,150,255,.06);
     -webkit-mask:linear-gradient(180deg,#000 70%,transparent);mask:linear-gradient(180deg,#000 70%,transparent);
     opacity:0;animation:fadeIn 1.6s var(--ease) .2s forwards}
   .hero::after{content:"";position:absolute;z-index:0;left:0;right:0;top:52%;bottom:-10%;pointer-events:none;
     background:
-      radial-gradient(42% 55% at 50% 62%,rgba(238,242,255,.95) 0%,rgba(190,208,255,.75) 22%,rgba(80,120,250,.55) 48%,rgba(20,50,190,.25) 68%,transparent 82%),
-      radial-gradient(70% 70% at 50% 100%,rgba(47,92,242,.6),transparent 70%);
+      radial-gradient(42% 55% at 50% 62%,var(--beam-0) 0%,var(--beam-1) 22%,var(--beam-2) 48%,var(--beam-3) 68%,transparent 82%),
+      radial-gradient(70% 70% at 50% 100%,var(--beam-floor),transparent 70%);
     filter:blur(18px);opacity:0;animation:fadeIn 2.2s var(--ease) .6s forwards,breathe 7s ease-in-out 2.8s infinite alternate}
   @keyframes fadeIn{to{opacity:1}}
   @keyframes breathe{from{opacity:1;transform:scaleX(1)}to{opacity:.82;transform:scaleX(1.06)}}
   .hero .hline,.hero #heroMarks,.title-wrap,.subtitle,.scroll-hint{z-index:1}
   .hero .hline{opacity:.6}
-  .title{filter:drop-shadow(0 0 28px rgba(80,120,255,.45))}
+  .title{filter:drop-shadow(0 0 28px var(--t-glow))}
   .title .ch span{
     background-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),
-      #ffffff 0%,#dfe8ff 18%,#9db8ff 42%,#4a74f5 72%,#1d3aa8 100%);
-    -webkit-text-stroke:1px rgba(255,255,255,.35)}
-  .subtitle p{color:#0b1c5e;text-shadow:0 0 18px rgba(255,255,255,.6)}
-  .scroll-hint{color:#1e3a9e}
-  .scroll-hint i{background:linear-gradient(#1e3a9e,transparent)}
-  .scroll-hint i::after{background:#fff}
+      var(--t0) 0%,var(--t1) 18%,var(--t2) 42%,var(--t3) 72%,var(--t4) 100%);
+    -webkit-text-stroke:1px var(--t-stroke)}
+  .subtitle p{color:var(--subtitle);text-shadow:0 0 18px var(--subtitle-glow)}
+  .scroll-hint{color:var(--hint)}
+  .scroll-hint i{background:linear-gradient(var(--hint),transparent)}
+  .scroll-hint i::after{background:var(--hint-drip)}
 
   /* intro */
-  .intro h2{color:#e6ecff}
-  .intro h2 em{color:var(--glow-sky);text-shadow:0 0 24px rgba(90,130,255,.7)}
-  .intro p{color:#8492b8}
+  .intro h2{color:var(--heading)}
+  .intro h2 em{color:var(--accent);text-shadow:0 0 24px var(--accent-glow)}
+  .intro p{color:var(--body)}
   .cat-index{border-top-color:var(--line)}
-  .cat-index .k{color:#dbe4ff}
-  .cat-index a:hover .k{color:var(--glow-sky);text-shadow:0 0 20px rgba(90,130,255,.7)}
+  .cat-index .k{color:var(--heading)}
+  .cat-index a:hover .k{color:var(--accent);text-shadow:0 0 20px var(--accent-glow)}
 
   /* category heads: 아래에서 올라오는 빛 */
-  .cat-head{background:linear-gradient(180deg,#000 0%,#030716 45%,#0a1a5a 85%,#1d44c9 100%);overflow:hidden}
+  .cat-head{background:linear-gradient(180deg,var(--head-0) 0%,var(--head-1) 45%,var(--head-2) 85%,var(--head-3) 100%);overflow:hidden}
   .cat-head::after{content:"";position:absolute;left:20%;right:20%;bottom:-40%;height:80%;
-    background:radial-gradient(50% 50% at 50% 50%,rgba(238,242,255,.55),rgba(80,120,250,.25) 50%,transparent 75%);
+    background:radial-gradient(50% 50% at 50% 50%,var(--head-beam),var(--head-beam-2) 50%,transparent 75%);
     filter:blur(20px);pointer-events:none}
   .cat-head .inner{z-index:1}
-  .cat-head h2{-webkit-text-stroke:1px rgba(170,195,255,.7)}
-  .cat-head h2 .fill{color:transparent;background:linear-gradient(180deg,#fff 0%,#b9cbff 50%,#4a74f5 100%);
+  .cat-head h2{-webkit-text-stroke:1px var(--cat-stroke)}
+  .cat-head h2 .fill{color:transparent;background:linear-gradient(180deg,var(--cat-f0) 0%,var(--cat-f1) 50%,var(--cat-f2) 100%);
     -webkit-background-clip:text;background-clip:text}
-  .cat-head .desc{color:#8fa3d8}
+  .cat-head .desc{color:var(--cat-desc)}
 
   /* cards: 유리 카드 */
-  .card .media{background:#05070f;border-radius:12px;border:1px solid rgba(255,255,255,.14);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.35);transition:box-shadow .6s var(--ease),border-color .6s}
-  .card:hover .media{border-color:rgba(255,255,255,.3);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 40px 90px -30px rgba(47,92,242,.75)}
-  .ph{background:linear-gradient(180deg,#05070f 0%,#070d2a 55%,#10257a 100%)}
+  .card .media{background:var(--media-bg);border-radius:12px;border:1px solid var(--media-border);
+    box-shadow:inset 0 1px 0 var(--media-hi);transition:box-shadow .6s var(--ease),border-color .6s}
+  .card:hover .media{border-color:var(--media-border-h);
+    box-shadow:inset 0 1px 0 var(--media-hi-h),0 40px 90px -30px var(--media-shadow)}
+  .ph{background:linear-gradient(180deg,var(--ph-0) 0%,var(--ph-1) 55%,var(--ph-2) 100%)}
   .ph b{filter:blur(46px)}
-  .ph b:nth-child(1){left:10%;top:auto;bottom:-45%;width:80%;background:var(--glow-blue);opacity:.8}
-  .ph b:nth-child(2){right:20%;bottom:-35%;width:60%;background:var(--glow-sky);opacity:.6}
-  .ph b:nth-child(3){left:35%;top:auto;bottom:-20%;width:30%;background:var(--glow-white);opacity:.55}
-  .ph .ph-label{color:rgba(220,230,255,.75)}
-  .crop::before,.crop::after{background:rgba(255,255,255,.55)}
-  .card .meta .t{color:#e6ecff}
-  .card .meta .t span{background-image:linear-gradient(var(--glow-sky),var(--glow-sky))}
-  .card .tag{color:#dbe4ff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);border-radius:999px}
+  .ph b:nth-child(1){left:10%;top:auto;bottom:-45%;width:80%;background:var(--blob-1);opacity:.8}
+  .ph b:nth-child(2){right:20%;bottom:-35%;width:60%;background:var(--blob-2);opacity:.6}
+  .ph b:nth-child(3){left:35%;top:auto;bottom:-20%;width:30%;background:var(--blob-3);opacity:.55}
+  .ph .ph-label{color:var(--ph-label)}
+  .crop::before,.crop::after{background:var(--crop)}
+  .card .meta .t{color:var(--heading)}
+  .card .meta .t span{background-image:linear-gradient(var(--accent),var(--accent))}
+  .card .tag{color:var(--tag);background:var(--tag-bg);border:1px solid var(--tag-border);border-radius:999px}
 
-  /* contact: 레퍼런스처럼 바닥에서 번지는 흰·파란 빛 */
+  /* contact: 바닥에서 번지는 빛 */
   .contact{background:
-    radial-gradient(75% 55% at 50% 108%,#eef2ff 0%,#b9cbff 20%,#4a74f5 42%,#0f2580 62%,transparent 82%),#000}
-  .contact h2{background:linear-gradient(90deg,#4a74f5,#ffffff,#9db8ff,#4a74f5);background-size:200% 100%;
-    -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 30px rgba(80,120,255,.5))}
-  .contact .links{color:#c9d5f5}
-  .contact footer{color:#0b1c5e}
+    radial-gradient(75% 55% at 50% 108%,var(--floor-0) 0%,var(--floor-1) 20%,var(--floor-2) 42%,var(--floor-3) 62%,transparent 82%),var(--bg)}
+  .contact h2{background:linear-gradient(90deg,var(--c-h0),var(--c-h1),var(--c-h2),var(--c-h0));background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 30px var(--t-glow))}
+  .contact .links{color:var(--text)}
+  .contact footer{color:var(--footer)}
 
   /* modal */
-  .modal .veil{background:radial-gradient(80% 45% at 50% 115%,#2f5cf2,#0a1a5a 45%,#000 75%),#000}
-  .modal .close{color:#dbe4ff}
-  .modal .player{background:#05070f;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
-  .modal .info h3{color:#f0f4ff}
-  .modal .info .desc{color:#8e9cc4}
-  .modal dd{color:#c9d5f5}
-  .modal .pager{color:#c9d5f5}
-  .modal .pager button:hover b{color:var(--glow-sky)}
+  .modal .veil{background:radial-gradient(80% 45% at 50% 115%,var(--veil-0),var(--veil-1) 45%,var(--bg) 75%),var(--bg)}
+  .modal .close{color:var(--text)}
+  .modal .player{background:var(--media-bg);border-radius:12px;overflow:hidden;border:1px solid var(--media-border)}
+  .modal .info h3{color:var(--strong)}
+  .modal .info .desc{color:var(--body)}
+  .modal dd{color:var(--text)}
+  .modal .pager{color:var(--text)}
+  .modal .pager button:hover b{color:var(--accent)}
+
+  /* 모드 전환 시 부드러운 크로스페이드 */
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.6s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
 </style>
 </head>
 <body>
@@ -748,6 +803,19 @@ addEventListener('keydown', e=>{
   if(e.key==='Escape') closeModal();
   if(e.key==='ArrowLeft') openModal(cur-1);
   if(e.key==='ArrowRight') openModal(cur+1);
+});
+
+/* ---------- theme toggle: 키보드 1번 = Light / Dark 전환 ---------- */
+function toggleTheme(){
+  const root = document.documentElement;
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  const apply = ()=>{ root.dataset.theme = next; try{ localStorage.setItem('theme', next); }catch(e){} };
+  document.startViewTransition ? document.startViewTransition(apply) : apply();
+}
+addEventListener('keydown', e=>{
+  if(e.key !== '1' || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+  if(e.target.closest('input,textarea,[contenteditable]')) return;
+  toggleTheme();
 });
 </script>
 </body>
