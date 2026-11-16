@@ -4,11 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Interactive Designer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <style>
+  /* 영문: Paperlogy (Latin 범위만), 한글: Pretendard */
+  @font-face{font-family:'Paperlogy EN';font-weight:200;font-style:normal;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-2ExtraLight.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215;}
+  @font-face{font-family:'Paperlogy EN';font-weight:300;font-style:normal;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-3Light.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215;}
+  @font-face{font-family:'Paperlogy EN';font-weight:400;font-style:normal;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-4Regular.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215;}
+  @font-face{font-family:'Paperlogy EN';font-weight:500;font-style:normal;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-5Medium.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215;}
+  @font-face{font-family:'Paperlogy EN';font-weight:600;font-style:normal;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-6SemiBold.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215;}
   :root{
+    --font:'Paperlogy EN','Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
     --blue-1:#7da5fb;
     --blue-2:#a9c4fe;
     --blue-3:#c9dafe;
@@ -25,7 +41,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    font-family:'Montserrat','Noto Sans KR',sans-serif;
+    font-family:var(--font);
     color:var(--text);
     background:#fff;
     overflow-x:hidden;
@@ -127,7 +143,7 @@
   .intro-inner{padding:0 4vw;display:grid;grid-template-columns:1fr 1.4fr;gap:6vw;align-items:end}
   .intro h2{font-weight:300;font-size:clamp(28px,3.4vw,58px);line-height:1.15;color:#2f4e9c;letter-spacing:-.01em}
   .intro h2 em{font-style:normal;color:var(--blue-1)}
-  .intro p{font-size:15px;line-height:1.9;color:#5d6f99;font-family:'Noto Sans KR',sans-serif;font-weight:300}
+  .intro p{font-size:15px;line-height:1.9;color:#5d6f99;font-family:var(--font);font-weight:300}
   .cat-index{margin-top:9vh;padding:0 4vw;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
   .cat-index a{padding:26px 0 0;display:flex;flex-direction:column;gap:10px;position:relative}
   .cat-index a:not(:last-child){border-right:1px solid var(--line-soft);padding-right:20px}
@@ -181,7 +197,7 @@
   @keyframes float{to{transform:translate(18%,12%) scale(1.15)}}
   .ph .ph-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
     font-size:11px;letter-spacing:.3em;color:#6d8ad0}
-  .ph .ph-label small{font-family:'Noto Sans KR',sans-serif;letter-spacing:.05em;font-size:11px;opacity:.7}
+  .ph .ph-label small{font-family:var(--font);letter-spacing:.05em;font-size:11px;opacity:.7}
   .card.drag .media{outline:2px dashed var(--blue-1);outline-offset:-10px}
   .card.has-video .ph{display:none}
 
@@ -201,7 +217,7 @@
 
   .card .meta{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-top:20px}
   .card .meta .t{font-size:clamp(18px,1.6vw,26px);font-weight:400;color:#1f3470;letter-spacing:-.005em;line-height:1.3}
-  .card .meta .s{font-size:13px;color:var(--muted);margin-top:6px;font-family:'Noto Sans KR',sans-serif;font-weight:300}
+  .card .meta .s{font-size:13px;color:var(--muted);margin-top:6px;font-family:var(--font);font-weight:300}
   .card .meta .y{font-size:11px;letter-spacing:.2em;color:var(--muted);white-space:nowrap;padding-top:6px}
   .card .meta .t span{background:linear-gradient(var(--blue-1),var(--blue-1)) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
   .card:hover .meta .t span{background-size:100% 1px}
@@ -244,7 +260,7 @@
   .modal .info{display:grid;grid-template-columns:1.3fr 1fr;gap:5vw;padding-top:44px;border-top:0}
   .modal .info .cat-l{font-size:11px;letter-spacing:.24em;color:var(--muted)}
   .modal .info h3{font-weight:300;font-size:clamp(32px,4vw,66px);color:#1f3470;margin:12px 0 22px;line-height:1.1}
-  .modal .info .desc{font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:15px;line-height:1.9;color:#4d5f8a}
+  .modal .info .desc{font-family:var(--font);font-weight:300;font-size:15px;line-height:1.9;color:#4d5f8a}
   .modal dl{display:grid;grid-template-columns:auto 1fr;gap:16px 28px;font-size:13px;align-self:end;border-top:1px solid var(--line);padding-top:22px}
   .modal dt{letter-spacing:.2em;font-size:10px;color:var(--muted);padding-top:3px}
   .modal dd{color:#2b3b63}
